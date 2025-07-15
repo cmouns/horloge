@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horloge</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="clock">
+        <div id="cadre">
+            
+            <video autoplay loop muted playsinline id="background-video">
+  <source src="imgs/itachi-shillouette-in-front-of-the-red-moon.3840x2160.mp4" type="video/mp4">
+  <!-- Optionnel : formats alternatifs -->
+  <!-- <source src="chemin/vers/ta_video.webm" type="video/webm"> -->
+  Votre navigateur ne supporte pas la vidéo.
+</video>
+
+            <div class="aiguille" id="heure"></div>
+            <div class="aiguille" id="minute"></div>
+            <div class="aiguille" id="seconde"></div>
+        </div>
+    </div>
+
+
+<script src="clock.js"></script>
+</body>
+</html>

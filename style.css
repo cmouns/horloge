@@ -1,0 +1,86 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#clock{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 800px;
+}
+
+#background-video {
+  position: fixed;       /* ou absolute si tu veux le mettre dans une div */
+  top: 0;
+  left: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+  width: auto;
+  height: auto;
+  z-index: -1;
+  object-fit: cover;     /* pour bien remplir sans déformation */
+  opacity: 0.9;          /* optionnel : pour ajouter de la transparence */
+  pointer-events: none;  /* pour rendre la vidéo non-cliquable */
+}
+#cadre{
+width: 90vw;       
+height: 90vw;       
+max-width: 500px;   
+max-height: 500px; 
+border-radius: 50%;
+position: relative;
+background-position:center;
+background-repeat: no-repeat;
+border: 15px solid #000000;
+}
+
+.chiffre {
+color: #fff;
+font-family: 'Noto Sans JP', 'Sawarabi Mincho', serif; 
+font-size: 2.5em; 
+text-shadow: 1px 1px 4px #000; 
+position: absolute;
+top: 50%; left: 50%;
+transform-origin: center center;
+
+}
+
+
+/* .chiffre0  { transform: translate(-50%, -50%) rotate(0deg)   translateY(-200px); }
+.chiffre1  { transform: translate(-50%, -50%) rotate(30deg)  translateY(-200px); }
+.chiffre2  { transform: translate(-50%, -50%) rotate(60deg)  translateY(-200px); }
+.chiffre3  { transform: translate(-50%, -50%) rotate(90deg)  translateY(-200px); }
+.chiffre4  { transform: translate(-50%, -50%) rotate(120deg) translateY(-200px); }
+.chiffre5  { transform: translate(-50%, -50%) rotate(150deg) translateY(-200px); }
+.chiffre6  { transform: translate(-50%, -50%) rotate(180deg) translateY(-200px); }
+.chiffre7  { transform: translate(-50%, -50%) rotate(210deg) translateY(-200px); }
+.chiffre8  { transform: translate(-50%, -50%) rotate(240deg) translateY(-200px); }
+.chiffre9 { transform: translate(-50%, -50%) rotate(270deg) translateY(-200px); }
+.chiffre10 { transform: translate(-50%, -50%) rotate(300deg) translateY(-200px); }
+.chiffre11 { transform: translate(-50%, -50%) rotate(330deg) translateY(-200px); } */
+
+
+.aiguille {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background: #fff;
+  border-radius: 6px;
+  pointer-events: none;
+  transform-origin: top center;
+
+}
+#heure {
+  width: 11px;   
+  height: 95px;  
+}
+#minute {
+  width: 8px;
+  height: 145px;
+}
+#seconde {
+  width: 4px;
+  height: 170px;
+  background: rgb(255, 0, 0);
+}
