@@ -1,8 +1,8 @@
+// HORLOGE 
 let cadre = document.getElementById('cadre');
 let chiffre = [];
 const kanji = ['十二','一','二','三','四','五','六','七','八','九','十','十一'];
 
-// Génération dynamique des chiffres en cercle
 for (let i = 0; i < 12; i++) {
     let span = document.createElement('span');
     span.classList.add(`chiffre${i}`, 'chiffre');
@@ -12,45 +12,75 @@ for (let i = 0; i < 12; i++) {
 }
 
 function positionChiffre() {
-    // Calcule la distance au centre dynamiquement selon la taille du cadran
     let largeur = cadre.offsetWidth;
     let bordure = 15;
-    let fontSize = chiffre[0].offsetHeight || 40; // sécurité si non rendu
+    let fontSize = chiffre[0].offsetHeight || 40;
     let rayon = (largeur / 2) - bordure - (fontSize / 2);
-
-    for (let i = 0; i < chiffre.length; i++) {
+    for (let i = 0; i < 12; i++) {
         let angle = i * 30;
-        // Correction spécifique pour le 11 si besoin :
-        
         chiffre[i].style.transform =
-            `translate(-50%, -50%) rotate(${angle}deg) translateY(-200px) rotate(${-angle}deg)`;
+            `translate(-50%, -50%) rotate(${angle}deg) translateY(-${rayon}px) rotate(${-angle}deg)`;
     }
 }
 positionChiffre();
-window.addEventListener('resize', positionChiffre); // Responsive
+window.addEventListener('resize', positionChiffre);
 
-// Animation des aiguilles
-let aiguilleHeure = document.getElementById('heure');
-let aiguilleMinute = document.getElementById('minute');
-let aiguilleSeconde = document.getElementById('seconde');
-
+// ANIMATION AIGUILLES
 function updateAiguilles() {
-    let now = new Date();
-    let heures = now.getHours() % 12;
-    let minutes = now.getMinutes();
-    let secondes = now.getSeconds();
+  let now = new Date();
+  let heures = now.getHours() % 12;
+  let minutes = now.getMinutes();
+  let secondes = now.getSeconds();
 
-    let angleHeures = heures * 30 + minutes * 0.5 + 180;
-    let angleMinutes = minutes * 6 + secondes * 0.1 + 180;
-    let angleSecondes = secondes * 6 + 180;
+  let angleHeures = heures * 30 + minutes * 0.5;
+  let angleMinutes = minutes * 6 + secondes * 0.1;
+  let angleSecondes = secondes * 6;
 
-    aiguilleHeure.style.transform =
-      `translate(-50%, 0) rotate(${angleHeures}deg)`;
-    aiguilleMinute.style.transform =
-      `translate(-50%, 0) rotate(${angleMinutes}deg)`;
-    aiguilleSeconde.style.transform =
-      `translate(-50%, 0) rotate(${angleSecondes}deg)`;
+  document.getElementById('heure').style.transform = `rotate(${angleHeures}deg)`;
+  document.getElementById('minute').style.transform = `rotate(${angleMinutes}deg)`;
+  document.getElementById('seconde').style.transform = `rotate(${angleSecondes}deg)`;
 }
 
+
 updateAiguilles();
-setInterval(updateAiguilles, 1000); 
+setInterval(updateAiguilles, 1000);
+
+// MINUTEUR
+const heureCible = document.getElementById('heureCible');
+const minuteCible = document.getElementById('minuteCible');
+const startAlarmBtn = document.getElementById('startAlarmBtn');
+const alarmSound = document.getElementById('alarmSound');
+const alarmStatus = document.getElementById('alarmStatus');
+
+let alarmActive = false;
+
+startAlarmBtn.addEventListener('click', () => {
+  let h = parseInt(heureCible.value);
+  let m = parseInt(minuteCible.value);
+
+  if (isNaN(h) || isNaN(m) || h < 0 || h > 23 || m < 0 || m > 59) {
+    alert("Entrez une heure valide (ex: 14h30)");
+    return;
+  }
+
+  alarmActive = true;
+  alarmStatus.textContent = `Alarme réglée à ${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}`;
+});
+
+setInterval(() => {
+  if (!alarmActive) return;
+
+  const now = new Date();
+  const currentHour = now.getHours();
+  const currentMinute = now.getMinutes();
+  const currentSecond = now.getSeconds();
+
+  const targetHour = parseInt(heureCible.value);
+  const targetMinute = parseInt(minuteCible.value);
+
+  if (currentHour === targetHour && currentMinute === targetMinute && currentSecond === 0) {
+    alarmActive = false;
+    alarmStatus.textContent = "Alarme déclenchée !";
+    alarmSound.play();
+  }
+}, 1000);

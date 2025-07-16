@@ -1,86 +1,121 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-#clock{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 800px;
+body{
+  background-image: url(imgs/1347135.png);
+}
+#clock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 800px;
 }
 
-#background-video {
-  position: fixed;       /* ou absolute si tu veux le mettre dans une div */
-  top: 0;
-  left: 0;
-  min-width: 100vw;
-  min-height: 100vh;
-  width: auto;
-  height: auto;
-  z-index: -1;
-  object-fit: cover;     /* pour bien remplir sans déformation */
-  opacity: 0.9;          /* optionnel : pour ajouter de la transparence */
-  pointer-events: none;  /* pour rendre la vidéo non-cliquable */
+#cadre {
+  width: 90vw;
+  height: 90vw;
+  max-width: 500px;
+  max-height: 500px;
+  border-radius: 50%;
+  position: relative;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 15px solid #000000;
+  overflow: hidden;
 }
-#cadre{
-width: 90vw;       
-height: 90vw;       
-max-width: 500px;   
-max-height: 500px; 
-border-radius: 50%;
-position: relative;
-background-position:center;
-background-repeat: no-repeat;
-border: 15px solid #000000;
+
+#bgVideo {
+  position: absolute;
+  left: 41%;
+  top: 50%;
+  width: 130%;
+  height: 110%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  pointer-events: none;
 }
 
 .chiffre {
-color: #fff;
-font-family: 'Noto Sans JP', 'Sawarabi Mincho', serif; 
-font-size: 2.5em; 
-text-shadow: 1px 1px 4px #000; 
-position: absolute;
-top: 50%; left: 50%;
-transform-origin: center center;
-
+  color: #fff;
+  font-family: 'Noto Sans JP', 'Sawarabi Mincho', serif;
+  font-size: 2.5em;
+  text-shadow: 1px 1px 4px #000;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: center center;
+  z-index: 2;
+  pointer-events: none;
+  user-select: none;
 }
-
-
-/* .chiffre0  { transform: translate(-50%, -50%) rotate(0deg)   translateY(-200px); }
-.chiffre1  { transform: translate(-50%, -50%) rotate(30deg)  translateY(-200px); }
-.chiffre2  { transform: translate(-50%, -50%) rotate(60deg)  translateY(-200px); }
-.chiffre3  { transform: translate(-50%, -50%) rotate(90deg)  translateY(-200px); }
-.chiffre4  { transform: translate(-50%, -50%) rotate(120deg) translateY(-200px); }
-.chiffre5  { transform: translate(-50%, -50%) rotate(150deg) translateY(-200px); }
-.chiffre6  { transform: translate(-50%, -50%) rotate(180deg) translateY(-200px); }
-.chiffre7  { transform: translate(-50%, -50%) rotate(210deg) translateY(-200px); }
-.chiffre8  { transform: translate(-50%, -50%) rotate(240deg) translateY(-200px); }
-.chiffre9 { transform: translate(-50%, -50%) rotate(270deg) translateY(-200px); }
-.chiffre10 { transform: translate(-50%, -50%) rotate(300deg) translateY(-200px); }
-.chiffre11 { transform: translate(-50%, -50%) rotate(330deg) translateY(-200px); } */
-
 
 .aiguille {
   position: absolute;
-  left: 50%;
   top: 50%;
+  left: 50%;
   background: #fff;
   border-radius: 6px;
   pointer-events: none;
-  transform-origin: top center;
+  transform-origin: 50% 100%;
+  z-index: 2;
+}
 
-}
 #heure {
-  width: 11px;   
-  height: 95px;  
+  width: 11px;
+  height: 95px;
+  margin-left: -5.5px;  
+  margin-top: -95px;   
 }
+
 #minute {
   width: 8px;
   height: 145px;
+  margin-left: -4px;
+  margin-top: -145px;
 }
+
 #seconde {
   width: 4px;
   height: 170px;
-  background: rgb(255, 0, 0);
+  background: red;
+  margin-left: -2px;
+  margin-top: -170px;
+}
+
+
+
+#timerContainer {
+  width: 320px;
+  margin: 30px auto 0 auto;
+  padding: 15px 10px;
+  background: #181818;
+  text-align: center;
+  border-radius: 9px;
+  color: #eee;
+  font-size: 1.2em;
+  box-shadow: 0 0 10px #111a;
+}
+
+#timerContainer input {
+  width: 50px;
+  font-size: 1em;
+}
+
+#timerContainer button {
+  background: #0066cc;
+  border: none;
+  color: #fff;
+  padding: 7px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-left: 4px;
+}
+
+#alarmStatus {
+  display: inline-block;
+  margin-left: 20px;
+  font-weight: bold;
 }

@@ -1,29 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Horloge</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Horloge avec Vidéo & Timer</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="clock">
-        <div id="cadre">
-            
-            <video autoplay loop muted playsinline id="background-video">
-  <source src="imgs/itachi-shillouette-in-front-of-the-red-moon.3840x2160.mp4" type="video/mp4">
-  <!-- Optionnel : formats alternatifs -->
-  <!-- <source src="chemin/vers/ta_video.webm" type="video/webm"> -->
-  Votre navigateur ne supporte pas la vidéo.
-</video>
+  <div id="clock">
+    <div id="cadre">
+      <!-- Vidéo en fond -->
+      <video id="bgVideo" muted autoplay loop playsinline>
+        <source src="imgs/itachi-shillouette-in-front-of-the-red-moon.3840x2160.mp4" type="video/mp4">
+      </video>
 
-            <div class="aiguille" id="heure"></div>
-            <div class="aiguille" id="minute"></div>
-            <div class="aiguille" id="seconde"></div>
-        </div>
+      <!-- Aiguilles à l'intérieur du cadre -->
+      <div class="aiguille" id="heure"></div>
+      <div class="aiguille" id="minute"></div>
+      <div class="aiguille" id="seconde"></div>
     </div>
+  </div>
+
+  <!-- Minuteur -->
+  <div id="timerContainer">
+  <label for="heureCible">Alarme à :</label>
+  <input type="number" id="heureCible" min="0" max="23" value="00"> h
+  <input type="number" id="minuteCible" min="0" max="59" value="00"> min
+  <button id="startAlarmBtn">Activer l'alarme</button>
+  <span id="alarmStatus">En attente...</span>
+  <audio id="alarmSound" src="imgs/MACHAppl_Clochette de micro onde (ID 1631)_LS.mp3" preload="auto"></audio>
+</div>
 
 
-<script src="clock.js"></script>
+  <script src="clock.js"></script>
 </body>
 </html>
